@@ -1,0 +1,38 @@
+{
+    "mplab.clangd.compileCommandsDir": "${workspaceFolder}/_build/Bitvis_Kontra_Logisk_Og_Pointers/default",
+    "mplab.clangd.arguments": [
+        "--header-insertion=never"
+    ],
+    "mplab.clangd.path": "c:\\Program Files\\Microchip\\xc8\\v4.00\\bin\\xc8-clangd.exe",
+    "cmake.sourceDirectory": "C:/Lars/h4pd100126/IOT/VsCode_MPLAB_AtMega328PB/Bitvis_Kontra_Logisk_Og_Pointers/cmake/Bitvis_Kontra_Logisk_Og_Pointers/default",
+    "memory-inspector.debugTypes": [
+        "arm-debugger",
+        "embedded-debug",
+        "gdb",
+        "gdbtarget",
+        "mplab-core-da"
+    ],
+    "mplab.ioview.columnHeaders": {
+        "Bitvis_Kontra_Logisk_Og_Pointers-default": [
+            "Name",
+            "Address",
+            "Description",
+            "Decimal",
+            "Value",
+            "Bits"
+        ]
+    },
+    "mplab.ioview.columnWidths": {
+        "Bitvis_Kontra_Logisk_Og_Pointers-default": [
+            200,
+            100,
+            100,
+            100,
+            100,
+            600
+        ]
+    },
+    "mplab.ioview.taggedNodes": {
+        "Bitvis_Kontra_Logisk_Og_Pointers-default": []
+    }
+}
