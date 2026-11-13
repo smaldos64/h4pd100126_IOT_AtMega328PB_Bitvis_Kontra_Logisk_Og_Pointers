@@ -5,9 +5,6 @@
  * @brief Main function
  */
 
-//#define PointerDebug
-
-
 #include <avr/io.h>
 #include <stdlib.h>
 
@@ -276,13 +273,18 @@ int main(void)
 	uint8_t *p_8;
 	uint16_t *p_16;
 
-	#ifdef PointerDebug
-	uint8_t p_8_DebugVal = *p_8;
-	uint16_t p_16_DebugVal = *p_16;
-	#endif
-		
 	p_16 = (uint16_t *)0x0024;
 	// p_16 peger nu på adresse 0x0024 i IO Memory => DDRB
+	// Syntaksen (uint16_t *) er en typecast, der fortæller compileren, at vi ønsker at behandle
+	//  adressen 0x0024 som en pointer til en uint16_t (16 bit unsigned integer).	
+
+	// Vi burde have skrevet p_16 = (uint16_t *)&DDRB; 
+	// For ikke at anvende magiske tal i vores i vores kode. Og
+	// det er jo ikke særlig smart at anvende magiske tal i vores kode, da vi så ikke kan
+	// genbruge koden på en anden MCU (Mikroprocessor), hvor DDRB måske ligger på en anden 
+	// adresse. Og det er jo netop hele ideen med at anvende en compiler, at vi kan 
+	// genbruge koden på forskellige MCU'er (Mikroprocessorer).
+
 	*p_16 = 0x0302;
 	// Sæt indholdet af adresse 0x0024 (DDRB) til 0x02 og
 	// indholdet af adresse 0x0025 (PORT B) til 0x03.
@@ -293,10 +295,16 @@ int main(void)
 
 	p_8 = (uint8_t *)0x0024;
 	// p_8 peger nu på adresse 0x0024 i IO Memory => DDRB
-	#ifdef PointerDebug
-	p_8_DebugVal = *p_8;
-	#endif
+	// Syntaksen (uint8_t *) er en typecast, der fortæller compileren, at vi ønsker at behandle 
+	// adressen 0x0024 som en pointer til en uint8_t (8 bit unsigned integer).
 	
+	// Vi burde have skrevet p_8 = (uint8_t *)&DDRB; 
+	// For ikke at anvende magiske tal i vores i vores kode. Og
+	// det er jo ikke særlig smart at anvende magiske tal i vores kode, da vi så ikke kan
+	// genbruge koden på en anden MCU (Mikroprocessor), hvor DDRB måske ligger på en anden 
+	// adresse. Og det er jo netop hele ideen med at anvende en compiler, at vi kan 
+	// genbruge koden på forskellige MCU'er (Mikroprocessorer).		
+
 	*p_8 |= 0x04;  // Eller også *p_8 |= (1 << PB2);
 	// Udfør en OR operation med indholdet af adresse 0x0024 (DDRB) for at sætte bit 2 (PB2)
 	// DDRB er nu lig med : 0x06
@@ -316,6 +324,7 @@ int main(void)
 	// ~(1 << PB1) = 0b11111110 (0xFE)
 	// PORT B er nu lig med : 0x16
 
+	
 	uint16_t *p_malloc;
 
 	p_malloc = (uint16_t *)malloc(sizeof(uint16_t));  
